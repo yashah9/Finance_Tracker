@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        main {
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input,
+        select,
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th,
+        td {
+            padding: 12px;
+        }
+
+        th {
+            background-color: #2c3e50;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Expense Tracker</h1>
+    </header>
+
+    <main>
+        <form id="ExpenseForm">
+            <h2>Add Income/Expense</h2>
+            <label for="transactionType">Transaction Type:</label>
+            <select id="transactionType" name="transactionType">
+                <option value="Income">Income</option>
+                <option value="Expense">Expense</option>
+            </select>
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" required>
+            <label for="description">Description:</label>
+            <input type="text" id="description" name="description" required>
+            <button type="button" onclick="addTransaction()">Add Transaction</button>
+        </form>
+
+        <h2>Transactions</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Amount</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody id="transactionList">
+                <!-- Transaction data will be displayed here dynamically -->
+            </tbody>
+        </table>
+    </main>
+
+    <script>
+        function addTransaction() {
+            // Get form values
+            var transactionType = document.getElementById("transactionType").value;
+            var amount = document.getElementById("amount").value;
+            var description = document.getElementById("description").value;
+
+            // Validate input (add more validation if needed)
+            if (!amount || isNaN(amount) || amount <= 0) {
+                alert("Please enter a valid amount.");
+                return;
+            }
+
+            // Create a new row for the table
+            var table = document.getElementById("transactionList");
+            var newRow = table.insertRow(table.rows.length);
+            var cellType = newRow.insertCell(0);
+            var cellAmount = newRow.insertCell(1);
+            var cellDescription = newRow.insertCell(2);
+
+            // Populate the new row with data
+            cellType.innerHTML = transactionType;
+            cellAmount.innerHTML = amount;
+            cellDescription.innerHTML = description;
+
+            // Clear the form fields
+            document.getElementById("transactionType").value = "income";
+            document.getElementById("amount").value = "";
+            document.getElementById("description").value = "";
+        }
+    </script>
+</body>
+
+</html>
