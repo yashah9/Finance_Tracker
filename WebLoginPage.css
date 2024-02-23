@@ -1,0 +1,154 @@
+/* Resetting default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Styles for container holding login/register card */
+.container {
+    width: 100%;
+    height: 100vh;
+    font-family: sans-serif;
+    background: rgb(125, 142, 227);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Styles for the card */
+.card {
+    width: 350px;
+    height: 500px;
+    box-shadow: 0 0 40px 20px rgba(0, 0, 0, 0.26);
+    perspective: 1000px;
+    position: relative;
+}
+
+/* Styles for the inner-box (front and back) of the card */
+.inner-box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 1s;
+}
+
+/* Styles for the front and back sides of the card */
+.card-front,
+.card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    background-image: linear-gradient(rgba(168, 148, 168, 0.8), rgba(0, 0, 100, 0.8)), url(Image4.jpg);
+    padding: 55px;
+    box-sizing: border-box;
+    backface-visibility: hidden;
+}
+
+/* Initially, back of the card is rotated */
+.card-back {
+    transform: rotateY(180deg);
+}
+
+/* Styles for heading inside the card */
+.card h2 {
+    font-weight: normal;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Styles for input boxes */
+.input-box {
+    width: 100%;
+    background: transparent;
+    border: 1px solid #fff;
+    margin: 6px 0;
+    height: 32px;
+    border-radius: 20px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    outline: none;
+    text-align: center;
+    color: #fff;
+}
+
+/* Placeholder styles */
+::placeholder {
+    color: #fff;
+    font-size: 12px;
+}
+
+/* Styles for buttons */
+button {
+    width: 100%;
+    background: transparent;
+    border: 1px solid #fff;
+    margin: 35px 0 10px;
+    height: 32px;
+    font-size: 12px;
+    border-radius: 20px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    outline: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Additional style for submit button */
+.Submit-btn {
+    position: relative;
+}
+
+.Submit-btn::after {
+    content: '\27a4';
+    color: #333;
+    line-height: 32px;
+    font-size: 20px;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    background: #fff;
+    position: absolute;
+    right: -1px;
+    top: -1px;
+}
+
+/* Styles for span */
+span {
+    font-size: 13px;
+    margin-left: 10px;
+}
+
+/* Styles for additional buttons in the card */
+.card .btn {
+    margin-top: 70px;
+}
+
+/* Styles for links in the card */
+.card a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    font-size: 13px;
+    margin-top: 8px;
+}
+
+/* Additional styles for additional links (About Us, Contact Us, etc.) */
+.additional-links {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.additional-links a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 10px;
+    font-size: 16px;
+    display: inline-block;
+}
