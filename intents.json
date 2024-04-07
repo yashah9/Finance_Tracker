@@ -1,0 +1,311 @@
+{
+  "intents": [
+     {
+      "tag": "greeting",
+      "patterns": [
+        "Hi",
+        "Hey",
+        "How are you",
+        "Is anyone there?",
+        "Hello",
+        "Good day"
+      ],
+      "responses": [
+        "Hey :-)",
+        "Hello, thanks for visiting",
+        "Hi there, what can I do for you?",
+        "Hi there, how can I help?"
+      ]
+     },
+     {
+      "tag": "goodbye",
+      "patterns": ["Bye", "See you later", "Goodbye"],
+      "responses": [
+        "See you later, thanks for visiting",
+        "Have a nice day",
+        "Bye! Come back again soon."
+      ]
+     },
+     {
+      "tag": "thanks",
+      "patterns": ["Thanks", "Thank you", "That's helpful", "Thank's a lot!"],
+      "responses": ["Happy to help!", "Any time!", "My pleasure"]
+     },
+     {
+     "tag": "general",
+     "patterns": [
+       "What is this website about?",
+       "How does this website work?",
+       "What services do you offer?"
+     ],
+     "responses": [
+       "This website helps you track your expenses and manage your finances.",
+       "Our website helps you keep track of your expenses easily.",
+       "We offer expense tracking, budgeting, and financial management services."
+     ]
+     },
+     {
+     "tag": "webapp",
+     "patterns": [
+       "Do you have a mobile app?",
+       "Why is there no mobile app?"
+     ],
+     "responses": [
+       "Currently we only have this website. But in future we will have an IOS and Android application."
+     ]
+     },
+     {
+     "tag": "help",
+     "patterns": [
+       "I need help",
+       "Can you assist me?",
+       "Help me with something",
+       "I'm having trouble with the site"
+     ],
+     "responses": [
+       "Of course, I'm here to help. What do you need assistance with?",
+       "Sure, I'll do my best to assist you. What seems to be the problem?",
+       "I'm sorry to hear that. Please describe the issue, and I'll try to help.",
+       "Let me know what you're struggling with, and I'll provide guidance."
+     ]
+     },
+     {
+      "tag": "payments",
+      "patterns": [
+        "Do you take credit cards?",
+        "Do you accept Mastercard?",
+        "Can I pay with Paypal?",
+        "Are you cash only?"
+      ],
+      "responses": [
+        "We accept VISA, Mastercard and Paypal",
+        "We accept most major credit cards, and Paypal"
+      ]
+     },
+     {
+     "tag": "ignore",
+     "patterns": [
+       "I will not use this app",
+       "I don't want to use this app",
+       "This app is not good"
+     ],
+     "responses": [
+       "STAY BROKE."
+     ]
+     },
+     {
+     "tag": "using",
+     "patterns": [
+       "Why should I use this app/website?",
+       "Why is this website better?"
+     ],
+     "responses": [
+       "Using our website, you'll gain valuable insights into your spending habits, enabling smarter money decisions.",
+       "We're committed to helping you achieve financial wellness by offering tools, tips, and resources tailored to your needs."
+     ]
+     },
+     {
+      "tag": "Income/expense tracking",
+      "patterns": [
+        "How do I track my expenses?",
+        "Best way to log expenses",
+        "Can I manually enter expenses?",
+        "Tracking expenses with this app"
+      ],
+      "responses": [
+        "You can log expenses by adding them manually.",
+        "For manual entries, simply go to the 'Add Expense' section and fill in the details.",
+        "For manual entries, simply go to the 'Add Income' section and fill in the details.",
+        "For manual entries, simply go to the 'Add Loans' section and fill in the details."
+      ]
+     },
+     {
+      "tag": "categorize",
+      "patterns": [
+        "How should I categorize my expenses?",
+        "What categories should I use for my budget?",
+        "I'm not sure how to organize my expenses",
+        "Expense categories",
+        "Categorizing my spending"
+      ],
+      "responses": [
+        "Group expenses into categories like housing, food, and transport.",
+        "Categorize based on your lifestyle for better financial visuals.",
+        "Use common categories: housing, utilities, groceries, entertainment.",
+        "Organize expenses in a way that helps with your financial goals."
+      ]
+     },
+     {
+      "tag": "troubleshooting",
+      "patterns": [
+        "I'm having an issue logging in",
+        "My dashboard isn't loading",
+        "Problem with viewing my expense report",
+        "Can't see my financial graphs",
+        "Trouble updating my profile"
+      ],
+      "responses": [
+        "Clear browser cache and cookies, then try logging in again.",
+        "Check if you're using the latest browser version for compatibility.",
+        "If issues cannot be resolved, our support team is ready to assist you.",
+        "Trouble with the site? Refreshing the page often helps."
+      ]
+     },
+     {
+      "tag": "security",
+      "patterns": [
+        "Is my financial data safe?",
+        "How do you protect my information?",
+        "What security measures are in place?",
+        "Concerned about privacy"
+      ],
+      "responses": [
+        "We prioritize your data's security with top-notch encryption.",
+        "Your data is protected using advanced security protocols.",
+        "Regular security updates keep your information safe and private.",
+        "Our platform monitors to strict data protection standards."
+      ]
+     },
+     {
+      "tag": "error",
+      "patterns": [
+        "I got an error message, what do I do?",
+        "Encountered an error on the website",
+        "Something went wrong, help",
+        "Error while using the site"
+      ],
+      "responses": [
+        "Note the error and contact support for quick resolution.",
+        "Refreshing the page can resolve many common issues.",
+        "Log out, then log back in to fix some errors.",
+        "For unfixable errors our support team is here to help."
+      ]
+     },
+     {
+      "tag": "contact us",
+      "patterns": [
+        "How can I contact you?",
+        "I need to speak with support",
+        "Contact information",
+        "Where can I find your contact details?",
+        "How do I get in touch with customer service?"
+      ],
+      "responses": [
+        "You can reach us through our Contact Us page",
+        "Email us at contactus@budgetbuddy.com for help",
+        "Reach us at contactus@budgetbuddy.com or through our Contact Us page.",
+        "Email contactus@budgetbuddy.com for direct assistance.",
+        "Our Contact Us page has all the ways you can reach out to us.",
+        "Drop us a line at contactus@budgetbuddy.com for any inquiries."
+      ]
+     },
+     {
+      "tag": "privacy policy",
+      "patterns": [
+        "Can you tell me about your privacy policy?",
+        "Where can I find the privacy policy?",
+        "Do you have a privacy policy?",
+        "What's your data protection policy?",
+        "How do you handle user data?"
+      ],
+      "responses": [
+        "Our Privacy Policy on our site details how we protect your data.",
+        "Visit our Privacy Policy page to see how we handle your information.",
+        "Check out our Privacy Policy for data handling and protection info.",
+        "Our site's Privacy Policy page outlines all data protection measures."
+      ]
+     },
+     {
+      "tag": "Q&A",
+      "patterns": [
+        "Do you have a FAQ section?",
+        "Where can I find answers to common questions?",
+        "Is there a Q&A page?",
+        "I have some questions, where can I find answers?",
+        "Help with common questions"
+      ],
+      "responses": [
+        "Our FAQ page has answers to all your common questions.",
+        "Find quick answers in our comprehensive FAQ section.",
+        "Check our FAQ page for instant answers to popular questions.",
+        "Visit our FAQ for quick helpful insights on common queries."
+      ]
+     },
+     {
+      "tag": "feedback",
+      "patterns": [
+        "How can I give feedback?",
+        "I want to suggest a feature",
+        "Can I leave a review?",
+        "Where to report issues?"
+      ],
+      "responses": [
+        "Your feedback is valuable to us! Please use the feedback form on our site.",
+        "We love hearing from you! Use our Contact Us page for feedback.",
+        "Feature suggestions? Drop us a note on our Contact Us page.",
+        "Report issues directly through our Report a Problem feature."
+      ]
+     },
+     {
+      "tag": "account profile",
+      "patterns": [
+        "How do I change my password?",
+        "Update account info",
+        "Can I change my email address?",
+        "Managing my account"
+      ],
+      "responses": [
+        "Change your password easily in the Account Settings section.",
+        "Update your account info under 'Profile Settings'.",
+        "Email changes are easy just head to your account settings.",
+        "Manage all your account details in one place under My Account."
+      ]
+     },
+     {
+      "tag": "subscription",
+      "patterns": [
+        "What subscription plans are available?",
+        "How do I upgrade my plan?",
+        "Subscription benefits?",
+        "Cancel my subscription"
+      ],
+      "responses": [
+        "Check out our range of plans under Subscription plans.",
+        "Upgrade your plan anytime in Account Settings > Subscription.",
+        "Subscribers enjoy exclusive benefits see pricing for details.",
+        "Cancellation is easy just visit your Subscription under settings and click cancel."
+      ]
+     },
+     {
+      "tag": "resources",
+      "patterns": [
+        "Where can I learn more about budgeting?",
+        "Financial education resources?",
+        "Guides on using this platform?",
+        "Help with financial planning"
+      ],
+      "responses": [
+        "Our learning Center is packed with budgeting tips and guides.",
+        "Explore financial education resources in our Help section.",
+        "Get started with our platform using the guides in Tutorials.",
+        "Discover financial planning advice in our Resources area."
+      ]
+     },
+     {
+      "tag": "funny",
+      "patterns": [
+        "Tell me a joke!",
+        "Tell me something funny!",
+        "Another joke",
+        "Joke",
+        "Do you know a joke?"
+      ],
+      "responses": [
+        "Why did the hipster burn his mouth? He drank the coffee before it was cool.",
+        "A recent study has found that women who carry a little extra weight live longer than the men who mention it.",
+        "What do you call a banker who loves gardening? A “loan” mower!",
+        "Why did the stock market go to therapy? It had too many ups and downs."
+      ]
+     }
+  ]
+}
