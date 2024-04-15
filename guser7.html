@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" type="text/css" href="guser6.css">
+    <link rel="stylesheet" type="text/css" href="guser3.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Financial Tracker</title>
@@ -103,13 +104,20 @@
     </nav>
     <main>
         <div id="homePage">
-            <form id="fStand">
-                <div id="financialSummary">
-                    <h3>Financial Summary</h3>
-                    <p>Current Balance: <span id="currentBalance">$0</span></p>
-                    <p>Total Income: <span id="totalIncome">$0</span></p>
-                    <p>Total Expenses: <span id="totalExpenses">$0</span></p>
-                </div>   
+            <div id="financialSummary">
+                <div class="summary-card total-income">
+                    <h3>Total Income</h3>
+                    <span id="totalIncome" class="value">$0</span>
+                </div>
+                <div class="summary-card total-expenses">
+                    <h3>Total Expenses</h3>
+                    <span id="totalExpenses" class="value">$0</span>
+                </div>
+                <div class="summary-card current-balance">
+                    <h3>Balance</h3>
+                    <span id="currentBalance" class="value">$0</span>
+                </div>
+            </div>
             </form>
             <form id="transactionForm">             
                 <h2>Add Income/Expense</h2>
@@ -158,14 +166,15 @@
         </div>
         <div id="graphsPage" style="display:none;">
             <h2>Graph View</h2>
-            <div style="display: flex;">
-                <div>
-                    <canvas id="barChart" width="400" height="400"></canvas>
-                </div>
-                <div>
-                    <canvas id="pieChart" width="400" height="400"></canvas>
-                    <canvas id="donutChart" width="400" height="400"></canvas>
-                </div>
+            <div class="graph-container">
+                <canvas id="barChart" width="400" height="400"></canvas>
+            </div>
+            <div class="graph-container2">
+                <canvas id="pieChart" width="400" height="400"></canvas>
+            </div>
+            <div class="graph-container3">
+                <canvas id="donutChart" width="400" height="400"></canvas>
+            </div>
             </div>
         </div>
         <div id="historyPage" style="display:none;">
@@ -213,8 +222,11 @@
     </main>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function() 
+        {
+
             var transactionData = [];
+            
             var transactionTypeCounts = {
                 'Income': 0,
                 'Expense': 0,
@@ -222,6 +234,20 @@
             };
             var barChart, pieChart, donutChart;
 
+            function addRecurringCharge(name, amount, frequency, startDate) {
+            // Add the recurring charge to the transactionData array
+            transactionData.push({
+            type: 'Recurring Charge',
+            name: name,
+            amount: amount,
+            frequency: frequency,
+            startDate: startDate
+        });
+        
+        displayTransactionHistory();
+        // Update the display
+        displayTransactionHistory();
+    }
             function updateTransactionTypeCounts() {
                 transactionTypeCounts = { 'Income': 0, 'Expense': 0, 'Loan': 0 };
                 transactionData.forEach(function(transaction) {
