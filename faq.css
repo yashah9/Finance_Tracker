@@ -5,13 +5,16 @@ body {
     padding: 0;
     background-color: #f4f4f4;
     color: #333;
+    line-height: 3.6;
 }
 
 header {
-    background-color: #444;
+    background-color: #60b1e3;
     color: #fff;
     padding: 15px;
     text-align: center;
+    font-size: 15px;
+
 }
 
 nav ul {
