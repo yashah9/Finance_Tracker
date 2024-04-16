@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <link rel="stylesheet" type="text/css" href="styles.css">
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <style>
+ /* General styles */
+ body {
+ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ margin: 0;
+ padding: 0;
+ background-color: #f9f9f9;
+ }
+ nav {
+ display: flex;
+ justify-content: flex-start;
+ margin-bottom: 20px;
+ }
+ nav button {
+ margin-right: 10px;
+ background-color: #3498db;
+ line-height: 20px;
+ color: white;
+ border: none;
+ border-radius: 4px;
+ padding: 10px 15px;
+ cursor: pointer;
+ }
+ nav button:last-child {
+ margin-right: 0;
+ }
+ main {
+ margin: 20px;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ }
+ /* Form styles */
+ form {
+ background-color: #fff;
+ padding: 20px;
+ border-radius: 8px;
+ box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+ width: 100%;
+ max-width: 400px;
+ margin-bottom: 20px;
+ }
+ label {
+ display: block;
+ margin-bottom: 8px;
+ color: #333;
+ }
+ input,
+ select,
+ button {
+ width: 100%;
+ padding: 10px;
+ margin-bottom: 15px;
+ border: 1px solid #ddd;
+ border-radius: 4px;
+ box-sizing: border-box;
+ font-size: 14px;
+ }
+ table {
+ width: 100%;
+ border-collapse: collapse;
+ margin-top: 20px;
+ }
+ table, th, td {
+ border: 1px solid #ddd;
+ text-align: left;
+ }
+ th, td {
+ padding: 12px;
+ }
+ th {
+ background-color: #2c3e50;
+ color: white;
+ }
+ canvas {
+ max-width: 400px;
+ margin-top: 20px;
+ }
+ </style>
+</head>
+<body>
+ <header>
+ </header>
+ <nav>
+ <button onclick="showHomePage()">Home</button>
+ <button onclick="showGraphs()">Graphs</button>
+ <button onclick="showHistory()">History</button>
+ <button onclick="logout()">Logout</button>
+ <button onclick="showProfile()">Profile</button>
+ </nav>
+ <main>
+ <div id="homePage">
+ <div id="financialSummary">
+ <div class="summary-card total-income">
+ <h3>Total Income</h3>
+ <span id="totalIncome" class="value">$0</span>
+ </div>
+ <div class="summary-card total-expenses">
+ <h3>Total Expenses</h3>
+ <span id="totalExpenses" class="value">$0</span>
+ </div>
+ <div class="summary-card current-balance">
+ <h3>Balance</h3>
+ <span id="currentBalance" class="value">$0</span>
+ </div>
+ </div>
+ </form>
+ <div class="tcard`">
+ <form id="transactionForm"> 
+ <h2>Add Income/Expense</h2>
+ <label for="transactionType">Transaction Type:</label>
+ <select id="transactionType" name="transactionType" onchange="updateDescriptionOptions()">
+ <option value="Select">Select</option>
+ <option value="Income">Income</option>
+ <option value="Expense">Expense</option>
+ <option value="Loan">Loan</option>
+ </select>
+ <div id="descriptionOptions">
+ <!-- Description options will be dynamically added here -->
+ </div>
+ <label for="amount">Amount:</label>
+ <input type="number" id="amount" name="amount" required>
+ <label for="transactionDate">Date:</label>
+ <input type="date" id="transactionDate" name="transactionDate" required>
+ <button type="button" onclick="addTransaction()">Add Transaction</button>
+ </form>
+</div>
+ <div class="transaction-design">
+ <h2>Transactions</h2>
+ <div>
+ <label for="sortBy">Sort By:</label>
+ <select id="sortBy" onchange="sortTransactions()">
+ <option value="none">None</option>
+ <option value="amount">Amount</option>
+ <option value="description">Description</option>
+ <option value="date">Date</option>
+ </select>
+ </div>
+ <div class="scrollable-table">
+ <table>
+ <thead>
+ <tr>
+ <th>#</th>
+ <th>Type</th>
+ <th>Amount</th>
+ <th>Description</th>
+ <th>Date</th>
+ </tr>
+ </thead>
+ <tbody id="transactionList">
+ <!-- Transaction data will be displayed here dynamically -->
+ </tbody>
+ </table>
+ </div>
+ </div>
+ </div>
+ </div>
+ <div id="graphsPage" style="display:none;">
+ <h2>Graph View</h2>
+ <div class="graph-container">
+ <canvas id="barChart" width="400" height="400"></canvas>
+ </div>
+ <div class="graph-container2">
+ <canvas id="pieChart" width="400" height="400"></canvas>
+ </div>
+ <div class="graph-container3">
+ <canvas id="donutChart" width="400" height="400"></canvas>
+ </div>
+ </div>
+ </div>
+ <div id="historyPage" style="display:none;">
+ <h2>Transaction History</h2>
+ <div>
+ <label for="sortByHistory">Sort By:</label>
+ <select id="sortByHistory" onchange="sortTransactionHistory()">
+ <option value="none">None</option>
+ <option value="amount">Amount</option>
+ <option value="description">Description</option>
+ <option value="date">Date</option>
+ </select>
+ </div>
+ <div class="scrollable-table">
+ <table>
+ <thead>
+ <tr>
+ <th>#</th>
+ <th>Type</th>
+ <th>Amount</th>
+ <th>Description</th>
+ <th>Date</th>
+ </tr>
+ </thead>
+ <tbody id="historyList">
+ <!-- Transaction history will be displayed here dynamically -->
+ </tbody>
+ </table>
+ </div>
+ </div>
+ <div id="profilePage" style="display:none;">
+ <h2>User Profile</h2>
+ <img src="images.png" width="50" height="50" alt="User Profile Icon"> 
+ <form id="transactionForm">
+ <label for="firstName">First Name:</label>
+ <input type="text" id="firstName" name="firstName" required>
+ <label for="lastName">Last Name:</label>
+ <input type="text" id="lastName" name="lastName" required>
+ <label for="email">Email Address:</label>
+ <input type="text" id="email" name="email" required>
+ <label for="birthdate">Date of Birth:</label>
+ <input type="date" id="birthdate" name="birthdate" required>
+ </form>
+ </div>
+ </main>
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+ <script>
+ document.addEventListener('DOMContentLoaded', function() 
+ {
+
+ var transactionData = [];
+ 
+ var transactionTypeCounts = {
+ 'Income': 0,
+ 'Expense': 0,
+ 'Loan': 0
+ };
+ var barChart, pieChart, donutChart;
+
+ function addRecurringCharge(name, amount, frequency, startDate) {
+ // Add the recurring charge to the transactionData array
+ transactionData.push({
+ type: 'Recurring Charge',
+ name: name,
+ amount: amount,
+ frequency: frequency,
+ startDate: startDate
+ });
+ 
+ displayTransactionHistory();
+ // Update the display
+ displayTransactionHistory();
+ }
+ function updateTransactionTypeCounts() {
+ transactionTypeCounts = { 'Income': 0, 'Expense': 0, 'Loan': 0 };
+ transactionData.forEach(function(transaction) {
+ transactionTypeCounts[transaction.type] += transaction.amount;
+ });
+ }
+
+ function showHomePage() {
+ document.getElementById("homePage").style.display = "block";
+ document.getElementById("graphsPage").style.display = "none";
+ document.getElementById("historyPage").style.display = "none";
+ document.getElementById("profilePage").style.display = "none";
+ }
+
+ function showGraphs() {
+ document.getElementById("homePage").style.display = "none";
+ document.getElementById("graphsPage").style.display = "block";
+ document.getElementById("historyPage").style.display = "none";
+ document.getElementById("profilePage").style.display = "none";
+ updateGraphs();
+ updateDonutChart();
+ }
+
+ function showHistory() {
+ document.getElementById("homePage").style.display = "none";
+ document.getElementById("graphsPage").style.display = "none";
+ document.getElementById("historyPage").style.display = "block";
+ document.getElementById("profilePage").style.display = "none";
+ displayTransactionHistory();
+ }
+
+ function logout() {
+ alert("Logged out");
+ // Example: Redirect to logout page
+ window.location.href = "Newlogin.html";
+ }
+
+ function showProfile() {
+ document.getElementById("homePage").style.display = "none";
+ document.getElementById("graphsPage").style.display = "none";
+ document.getElementById("historyPage").style.display = "none";
+ document.getElementById("profilePage").style.display = "block";
+ }
+
+ function updateFinancialSummary() {
+ let totalIncome = 0;
+ let totalExpenses = 0;
+
+ transactionData.forEach(transaction => {
+ if (transaction.type === 'Income') {
+ totalIncome += transaction.amount;
+ } else if (transaction.type === 'Expense') {
+ totalExpenses += transaction.amount;
+ }
+ 
+ });
+
+ let currentBalance = totalIncome - totalExpenses;
+
+ document.getElementById('currentBalance').textContent = `$${currentBalance.toFixed(2)}`;
+ document.getElementById('totalIncome').textContent = `$${totalIncome.toFixed(2)}`;
+ document.getElementById('totalExpenses').textContent = `$${totalExpenses.toFixed(2)}`;
+}
+
+
+ function addTransaction() {
+ var transactionType = document.getElementById("transactionType").value;
+ var amount = parseFloat(document.getElementById("amount").value);
+ var description = document.getElementById("description").value; // Make sure you define this element in your HTML
+ var date = document.getElementById("transactionDate").value;
+
+ if (isNaN(amount) || amount <= 0) {
+ alert("Please enter a valid amount.");
+ return;
+ }
+
+ transactionData.push({
+ type: transactionType,
+ amount: amount,
+ description: description, // This assumes you have a corresponding input for description in your HTML
+ date: date
+ });
+
+ updateTransactionTypeCounts(); // Recalculates the counts for each transaction type
+ displayTransactions(); // Updates the transactions displayed on the page
+ clearForm(); // Clears the form inputs
+
+ updateFinancialSummary(); // Update this call to be outside any conditionals
+}
+
+ function displayTransactions(sortBy) {
+ var transactionList = document.getElementById("transactionList");
+ transactionList.innerHTML = ""; // Clear existing entries
+
+ var sortedData = transactionData.slice(); // Copy original data
+ switch (sortBy) {
+ case 'amount':
+ sortedData.sort((a, b) => a.amount - b.amount);
+ break;
+ case 'description':
+ sortedData.sort((a, b) => a.description.localeCompare(b.description));
+ break;
+ case 'date':
+ sortedData.sort((a, b) => new Date(a.date) - new Date(b.date));
+ break;
+ default:
+ // No sorting
+ break;
+ }
+
+ sortedData.forEach(function(transaction, index) {
+ var row = transactionList.insertRow();
+ var cell1 = row.insertCell(0);
+ var cell2 = row.insertCell(1);
+ var cell3 = row.insertCell(2);
+ var cell4 = row.insertCell(3);
+ var cell5 = row.insertCell(4);
+
+ cell1.innerHTML = index + 1;
+ cell2.innerHTML = transaction.type;
+ cell3.innerHTML = transaction.amount;
+ cell4.innerHTML = transaction.description;
+ cell5.innerHTML = transaction.date;
+ });
+ }
+
+ function displayTransactionHistory(sortBy) {
+ var historyList = document.getElementById("historyList");
+ historyList.innerHTML = ""; // Clear existing entries
+
+ var sortedData = transactionData.slice(); // Copy original data
+ switch (sortBy) {
+ case 'amount':
+ sortedData.sort((a, b) => a.amount - b.amount);
+ break;
+ case 'description':
+ sortedData.sort((a, b) => a.description.localeCompare(b.description));
+ break;
+ case 'date':
+ sortedData.sort((a, b) => new Date(a.date) - new Date(b.date));
+ break;
+ default:
+ // No sorting
+ break;
+ }
+
+ sortedData.forEach(function(transaction, index) {
+ var row = historyList.insertRow();
+ var cell1 = row.insertCell(0);
+ var cell2 = row.insertCell(1);
+ var cell3 = row.insertCell(2);
+ var cell4 = row.insertCell(3);
+ var cell5 = row.insertCell(4);
+
+ cell1.innerHTML = index + 1;
+ cell2.innerHTML = transaction.type;
+ cell3.innerHTML = transaction.amount;
+ cell4.innerHTML = transaction.description;
+ cell5.innerHTML = transaction.date;
+ });
+ }
+
+ function clearForm() {
+ document.getElementById("transactionForm").reset();
+ }
+
+ function updateGraphs() {
+ var ctxBar = document.getElementById('barChart').getContext('2d');
+ var ctxPie = document.getElementById('pieChart').getContext('2d');
+
+ if (barChart) barChart.destroy();
+ if (pieChart) pieChart.destroy();
+
+ barChart = new Chart(ctxBar, {
+ type: 'bar',
+ data: {
+ labels: Object.keys(transactionTypeCounts),
+ datasets: [{
+ label: '# Transactions',
+ data: Object.values(transactionTypeCounts),
+ backgroundColor: [
+ 'rgba(255, 99, 132, 0.2)',
+ 'rgba(54, 162, 235, 0.2)',
+ 'rgba(255, 206, 86, 0.2)'
+ ],
+ borderColor: [
+ 'rgba(255,99,132,1)',
+ 'rgba(54, 162, 235, 1)',
+ 'rgba(255, 206, 86, 1)'
+ ],
+ borderWidth: 1
+ }]
+ },
+ options: {
+ scales: {
+ yAxes: [{
+ ticks: {
+ beginAtZero:true
+ }
+ }]
+ }
+ }
+ });
+
+ pieChart = new Chart(ctxPie, {
+ type: 'pie',
+ data: {
+ labels: Object.keys(transactionTypeCounts),
+ datasets: [{
+ data: Object.values(transactionTypeCounts),
+ backgroundColor: [
+ 'rgba(255, 99, 132, 0.2)',
+ 'rgba(54, 162, 235, 0.2)',
+ 'rgba(255, 206, 86, 0.2)'
+ ],
+ borderColor: [
+ 'rgba(255,99,132,1)',
+ 'rgba(54, 162, 235, 1)',
+ 'rgba(255, 206, 86, 1)'
+ ],
+ borderWidth: 1
+ }]
+ }
+ });
+ }
+
+ function updateDonutChart() {
+ var ctxDonut = document.getElementById('donutChart').getContext('2d');
+
+ if (donutChart) donutChart.destroy();
+
+ donutChart = new Chart(ctxDonut, {
+ type: 'doughnut',
+ data: {
+ labels: Object.keys(transactionTypeCounts),
+ datasets: [{
+ data: Object.values(transactionTypeCounts),
+ backgroundColor: [
+ 'rgba(255, 99, 132, 0.2)',
+ 'rgba(54, 162, 235, 0.2)',
+ 'rgba(255, 206, 86, 0.2)'
+ ],
+ borderColor: [
+ 'rgba(255,99,132,1)',
+ 'rgba(54, 162, 235, 1)',
+ 'rgba(255, 206, 86, 1)'
+ ],
+ borderWidth: 1
+ }]
+ }
+ });
+ }
+
+ function sortTransactions() {
+ var sortBy = document.getElementById("sortBy").value;
+ displayTransactions(sortBy);
+ }
+
+ function sortTransactionHistory() {
+ var sortBy = document.getElementById("sortByHistory").value;
+ displayTransactionHistory(sortBy);
+ }
+
+ function updateDescriptionOptions() {
+ var transactionType = document.getElementById("transactionType").value;
+ var descriptionOptions = document.getElementById("descriptionOptions");
+
+ if (transactionType === "Income") {
+ descriptionOptions.innerHTML = `
+ <label for="description">Description:</label>
+ <select id="description" name="description">
+ <option value="Select">Select</option>
+ <option value="Salary">Salary</option>
+ <option value="Interest">Interest</option>
+ <option value="Stocks">Stocks</option>
+ <option value="Bonds">Bonds</option>
+ <option value="Tips">Tips</option>
+ <option value="Crypto">Crypto</option>
+ </select>
+ `;
+ } else if (transactionType === "Expense") {
+ descriptionOptions.innerHTML = `
+ <label for="description">Description:</label>
+ <select id="description" name="description">
+ <option value="Select">Select</option>
+ <option value="Automotive">Automotive</option>
+ <option value="Department Stores">Department Stores</option>
+ <option value="Education">Education</option>
+ <option value="Gasoline">Gasoline</option>
+ <option value="Government Services">Government Services</option>
+ <option value="Home Improvement">Home Improvement</option>
+ <option value="Medical Services">Medical Services</option>
+ <option value="Merchandise">Merchandise</option>
+ <option value="Restaurants">Restaurants</option>
+ <option value="Services">Services</option>
+ <option value="Supermarkets">Supermarkets</option>
+ <option value="Travel/Entertainment">Travel/Entertainment</option>
+ <option value="Wholesale Clubs">Wholesale Clubs</option>
+ </select>
+ `;
+ } else if (transactionType === "Loan") {
+ descriptionOptions.innerHTML = `
+ <label for="description">Description:</label>
+ <select id="description" name="description">
+ <option value="Select">Select</option>
+ <option value="Auto Loans">Auto Loans</option>
+ <option value="Mortgage Loans">Mortgage Loans</option>
+ <option value="Student Loans">Student Loans</option>
+ </select>
+ `;
+ }
+ }
+
+ window.showHomePage = showHomePage;
+ window.showGraphs = showGraphs;
+ window.showHistory = showHistory;
+ window.showProfile = showProfile;
+ window.logout = logout;
+ window.addTransaction = addTransaction;
+ window.sortTransactions = sortTransactions;
+ window.sortTransactionHistory = sortTransactionHistory;
+ window.updateDescriptionOptions = updateDescriptionOptions;
+ });
+ </script>
+</body>
+</html>
