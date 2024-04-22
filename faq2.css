@@ -1,8 +1,9 @@
+/* General Styles */
 body {
-    font-family: 'Open Sans', Arial, sans-serif;
+    font-family: 'Open Sans', Arial, sans-serif; /* Example Google Font */
     margin: 0;
     padding: 0;
-    background-color: #f9f9f9; 
+    background-color: #f9f9f9; /* Softer background */
     color: #333;
     line-height: 1.6;
 }
